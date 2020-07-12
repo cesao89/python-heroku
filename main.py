@@ -4,8 +4,9 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
-    return 'Hello World!'
+@app.route('/<name>')
+def hello(name=None):
+    return 'Hello {}!'.format(name if name else 'World!')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
