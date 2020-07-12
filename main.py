@@ -10,6 +10,10 @@ def hello(name=None):
     return 'Hello {}! - Version {}'.format(name if name else 'World!', os.environ.get('BUILDNO', None))
 
 
+@app.route('/teste', methods=["POST"])
+def teste():
+    return { "status": True }, 200
+
 @app.route('/docs/<path:path>')
 def doc(path):
     return send_from_directory('static/docs', path)

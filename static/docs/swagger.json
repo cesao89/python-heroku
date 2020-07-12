@@ -9,9 +9,12 @@
         "email": "cesao89.web@gmail.com"
       }
     },
-    "host": "c0d1.me",
-    "basePath": "/neotalk",
+    "basePath": "/",
     "tags": [
+      {
+        "name": "teste",
+        "description": "TESTE"
+      },
       {
         "name": "chatbot",
         "description": "Integrações com Chatbot"
@@ -22,6 +25,31 @@
       }
     ],
     "paths": {
+      "/teste": {
+        "post": {
+          "tags": ["teste"],
+          "summary": "Teste",
+          "description": "",
+          "operationId": "teste",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Objeto de comunicação com o chatbot.",
+              "required": true,
+              "schema": { "$ref": "#/definitions/Teste" }
+            }
+          ],
+          "responses": {
+            "200": { "description": "Requisição processada com sucesso" },
+            "400": { "description": "Requisição inválida" },
+            "401": { "description": "Requisição não autorizada" },
+            "500": { "description": "Erro inesperado" }
+          }
+        }
+      },
       "/chatbot/send-message": {
         "post": {
           "tags": ["chatbot"],
@@ -83,6 +111,15 @@
       }
     },
     "definitions": {
+      "Teste": {
+        "type": "object",
+        "properties": {
+          "teste": {
+            "type": "string",
+            "example": "teste"
+          }
+        }
+      },
       "ChatbotSendMessage": {
         "type": "object",
         "properties": {
