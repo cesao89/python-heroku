@@ -2,19 +2,15 @@
     "swagger": "2.0",
     "info": {
       "title": "NeoTalk Web",
-      "version": "1.0.0",
+      "version": "0.2.0",
       "description": "Documentação desenvolvida para integração com as soluções [NeoTalk](http://neotalk.net.br) para interfaces **web** e **mobile**.",
       "contact": {
         "name": "César Oliveira Domingos",
         "email": "cesao89.web@gmail.com"
       }
     },
-    "basePath": "/",
+    "basePath": "/neotalk",
     "tags": [
-      {
-        "name": "teste",
-        "description": "TESTE"
-      },
       {
         "name": "chatbot",
         "description": "Integrações com Chatbot"
@@ -25,31 +21,6 @@
       }
     ],
     "paths": {
-      "/teste": {
-        "post": {
-          "tags": ["teste"],
-          "summary": "Teste",
-          "description": "",
-          "operationId": "teste",
-          "consumes": ["application/json"],
-          "produces": ["application/json"],
-          "parameters": [
-            {
-              "in": "body",
-              "name": "body",
-              "description": "Objeto de comunicação com o chatbot.",
-              "required": true,
-              "schema": { "$ref": "#/definitions/Teste" }
-            }
-          ],
-          "responses": {
-            "200": { "description": "Requisição processada com sucesso" },
-            "400": { "description": "Requisição inválida" },
-            "401": { "description": "Requisição não autorizada" },
-            "500": { "description": "Erro inesperado" }
-          }
-        }
-      },
       "/chatbot/send-message": {
         "post": {
           "tags": ["chatbot"],
@@ -111,15 +82,6 @@
       }
     },
     "definitions": {
-      "Teste": {
-        "type": "object",
-        "properties": {
-          "teste": {
-            "type": "string",
-            "example": "teste"
-          }
-        }
-      },
       "ChatbotSendMessage": {
         "type": "object",
         "properties": {
