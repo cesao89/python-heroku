@@ -1,0 +1,121 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "NeoTalk Web",
+      "version": "1.0.0",
+      "description": "Documentação desenvolvida para integração com as soluções [NeoTalk](http://neotalk.net.br) para interfaces **web** e **mobile**.",
+      "contact": {
+        "name": "César Oliveira Domingos",
+        "email": "cesao89.web@gmail.com"
+      }
+    },
+    "host": "c0d1.me",
+    "basePath": "/neotalk",
+    "tags": [
+      {
+        "name": "chatbot",
+        "description": "Integrações com Chatbot"
+      },
+      {
+        "name": "user",
+        "description": "Gestão dos Usuários"
+      }
+    ],
+    "paths": {
+      "/chatbot/send-message": {
+        "post": {
+          "tags": ["chatbot"],
+          "summary": "Enviar mensagem para o chatbot",
+          "description": "",
+          "operationId": "sendMessage",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Objeto de comunicação com o chatbot.",
+              "required": true,
+              "schema": { "$ref": "#/definitions/ChatbotSendMessage" }
+            }
+          ],
+          "responses": {
+            "200": { "description": "Requisição processada com sucesso" },
+            "400": { "description": "Requisição inválida" },
+            "401": { "description": "Requisição não autorizada" },
+            "500": { "description": "Erro inesperado" }
+          },
+          "security": [ { "basicAuth": [] } ]
+        }
+      },
+      "/user/recovery-password": {
+        "post": {
+          "tags": ["user"],
+          "summary": "Recuperar Senha",
+          "description": "",
+          "operationId": "recoveryPassword",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "E-mail do usuário para recuperação de senha.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/UserRecoveryPassword"
+              }
+            }
+          ],
+          "responses": {
+            "200": { "description": "Requisição processada com sucesso" },
+            "400": { "description": "Requisição inválida" },
+            "401": { "description": "Requisição não autorizada" },
+            "500": { "description": "Erro inesperado" }
+          },
+          "security": [ { "basicAuth": [] } ]
+        }
+      }
+    },
+    "securityDefinitions": {
+      "basicAuth": {
+        "type": "basic"
+      }
+    },
+    "definitions": {
+      "ChatbotSendMessage": {
+        "type": "object",
+        "properties": {
+          "chatSession": {
+            "type": "string",
+            "example": "7af26e55-d584-41d0-88fd-fc72fccb5416"
+          },
+          "chatMessage": {
+            "type": "string",
+            "example": "Hello World"
+          },
+          "userEmail": {
+            "type": "string",
+            "example": "john_doe@example.com"
+          },
+          "userMatricula": {
+            "type": "string",
+            "example": "123456"
+          },
+          "userEmpresa": {
+            "type": "string",
+            "example": "2"
+          }
+        }
+      },
+      "UserRecoveryPassword": {
+        "type": "object",
+        "properties": {
+          "userEmail": {
+            "type": "string",
+            "example": "john_doe@example.com"
+          }
+        }
+      }
+    }
+  }
