@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/<name>')
 def hello(name=None):
-    return 'Hello {}!'.format(name if name else 'World!')
+    return 'Hello {}! - Version {}'.format(name if name else 'World!', os.environ.get('BUILDNO', None))
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
